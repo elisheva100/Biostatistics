@@ -1,8 +1,3 @@
-############################
-#Assignment 1
-#Elisheva Heilbrun 208833012
-############################
-
 library(DAAG)
 setwd("C:/Users/Owner/Desktop/RCourse") #My personal path.
 
