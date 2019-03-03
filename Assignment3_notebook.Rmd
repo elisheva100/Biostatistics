@@ -1,0 +1,109 @@
+---
+title: "Assignment 3 - Elisheva Heilbrun 208833012"
+output: html_notebook
+---
+
+```{r}
+X <- 20 #random KG value.
+if(X >= 4 && X <= 5)
+{
+  dose <- 2
+} else if (X >= 6 && X <= 7)
+{
+  dose <- 3.5
+}else if(X >= 8 && X <= 10)
+{
+  dose <- 5
+} else if(X >= 11 && X <= 13)
+{
+  dose <- 7
+}
+print(dose)
+```
+```{r}
+myvector <- c(1,2,3)
+if(all(diff(myvector) <= 0)) #compute the differences between elements.
+{
+  print("The elements are in ascending order")
+} else 
+{
+  print("The elements are not in ascending order")
+}
+```
+```{r}
+a <- 1
+for(i in 1:20)
+{
+  a <- a*i
+}
+#Using prod function for comparison.
+if((prod(1:20)) == a)
+{
+  print("you got the correct result")
+}
+#Usinf factorial function for comparison.
+if((factorial(20)) == a)
+{
+  print("you got the correct result")
+}
+```
+```{r}
+mydataframe <- data.frame(1:4, 5:8, (c("a", "b", "c", "d")), stringsAsFactors=FALSE) #Initialize a data frame.
+for(i in 1:length(mydataframe))
+{
+ if(is.numeric(mydataframe[,i]))
+ {
+   print(mean(mydataframe[,i]))
+ } else
+ {
+   print(sum(nchar(mydataframe[,i])))
+ }
+}
+```
+```{r}
+population_size <- 1000
+years <- 20
+growth_rate <- 0.012
+decreases_factor <- 0.0001
+for(i in 2:years)
+{
+  growth_rate <- growth_rate - decreases_factor
+  population_size <- c(population_size, population_size[i-1] + population_size[i-1]*growth_rate)
+}
+
+```
+```{r}
+plot(population_size, xlab = "Years", ylab = "Population size", col = "purple", pch = 16)
+```
+```{r}
+debt <- 5000
+while(debt)
+{
+  debt <- debt -500
+  print(debt)
+}
+```
+```{r}
+thickness <- 0.001
+distance <- 4e10 # The distance from earth to moon in centimeters.
+times <- 0 #Counts how many times you can fold the paper until you reach to the moon.
+while(thickness < distance)
+{
+  thickness <- thickness*2
+  times <- times + 1
+}
+print(times)
+```
+```{r}
+df_size <- 5
+nesteddataframe <- data.frame(matrix(NA, nrow = df_size, ncol = df_size))
+for (i in 1:df_size)
+{
+  for(j in 1:df_size)
+  {
+    nesteddataframe[i,j] <- abs(i-j)
+  }
+}
+print(nesteddataframe)
+```
+
