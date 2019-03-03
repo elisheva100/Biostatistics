@@ -1,0 +1,125 @@
+---
+title: "Assignment 4"
+output: html_notebook
+---
+
+
+```{r}
+runif(10)
+#I didn't recieve the same numbers when I repeated this section.
+```
+```{r}
+set.seed(12345)
+runif(10)
+#In this section I got the same numbers when I ran it twice.  
+```
+
+```{r}
+set.seed (54321)
+runif(10)
+#In this section, I get other numbers than the previous section, but again, I get the same numbers when I run this section twice.
+```
+```{r}
+set.seed (Sys.time ())
+runif(10)
+#In this section I get different numbers in every run of the above commands.
+```
+```{r}
+CelsiustoFahrenheit <- function(degrees)
+{
+  return(degrees*(9/5) + 32) #A formula for convertion from Celsius to Fahrenheit
+}
+CelsiustoFahrenheit(36.6)
+```
+```{r}
+Unique <- function(anyVector) 
+{
+  uniqVector <- anyVector[1]
+  if(length(anyVector) == 1) #In case there is only 1 element in the vector, the vector is already unique.
+  {
+    return(uniqVector)
+  }
+  #Scans the vector
+    for(i in 1:length(anyVector))
+  {
+    for(j in 1:length(uniqVector))
+    {
+           if(!(is.element(anyVector[i],uniqVector))) #If the current element is not in the new vector, add it.
+      {
+        uniqVector <- c(uniqVector,anyVector[i])
+      }
+    }
+  }
+  return(uniqVector)
+}
+Unique(c(1,1,2,3,5,5,1,8))
+```
+```{r}
+Divisors <- function(num){
+  #  Vector of numberes to test against
+  divisors <- seq_len(num)
+  #  Modulo division. If remainder is 0 that number is a divisor of the given number so return it
+  divisors <- divisors[ num%%divisors == 0 ]
+  divisors <- divisors[-c(1,length(divisors))] #Remove 1  and the number itself.
+  return(divisors)
+}
+Divisors(32)
+```
+```{r}
+iris[with(iris, order(Sepal.Length, decreasing = TRUE))[1:20],]
+```
+```{r}
+iris[with(iris, order(Sepal.Length))[1:20],]
+
+```
+```{r}
+iris[with(iris, order(Species, Petal.Width)),]
+```
+```{r}
+for(col in names(iris))
+{
+  if(class(iris[,col]) == "numeric") #Avoid the "Speices" column.
+    {
+        print(paste(col, "median value is:", median(iris[,col])))
+    }
+}
+```
+```{r}
+filtered_iris <- subset(iris, Species == "setosa") #Extract only the setose species.
+for(col in names(filtered_iris))
+{
+  if(class(filtered_iris[,col]) == "numeric") #Avoid the "Speices" column.
+    {
+        print(paste(col, "mean value is:", mean(filtered_iris[,col])))
+    }
+}
+```
+```{r}
+aggregate(iris["Petal.Length"], by=list(iris$Species),FUN=mean)[,c("Group.1", "Petal.Length")] #Present only the petal.length column.
+```
+```{r}
+iris_greater_3 <- subset(iris, Sepal.Width > 3) #Filters the df to sepal.length > 3
+aggregate(iris_greater_3["Sepal.Length"], by=list(iris_greater_3$Species),FUN=mean)[,c("Group.1", "Sepal.Length")] #Present only the sepal.length column.
+
+```
+```{r}
+plot(iris$Petal.Length, iris$Sepal.Length, xlab = "Petal length", ylab = "Sepal length", main = "Petal.Length vs. Sepal.Length", col = "purple")
+
+```
+```{r}
+linearMod <- lm(Sepal.Length~ Sepal.Width, data=iris)
+summary(linearMod)
+#The p-value > 0.05, therefore this is not statistically significant.
+```
+```{r}
+plot(iris$Petal.Length, iris$Sepal.Length, xlab = "Petal length", ylab = "Sepal length", main = "Petal.Length vs. Sepal.Length", col = "purple")
+abline(lm(Sepal.Length ~ Petal.Length,data = iris))
+
+```
+```{r}
+pdf("C:/Users/Owner/Desktop/RCourse/Plot.pdf")
+plot(iris$Petal.Length, iris$Sepal.Length, xlab = "Petal length", ylab = "Sepal length", main = "Petal.Length vs. Sepal.Length", col = "purple")
+abline(lm(Sepal.Length ~ Petal.Length,data = iris))
+dev.off()
+```
+
